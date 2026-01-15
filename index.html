@@ -23,9 +23,9 @@
             --sans: 'Montserrat', sans-serif;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
+        html, body {
+    scroll-behavior: smooth !important;
+}
         
         body {
             background: var(--charcoal);
@@ -575,7 +575,55 @@
         line-height: 1.2;
         display: block;
     }
+           .nav-links {
+        gap: 12px !important;
+        padding-right: 20px !important;
+    }
 }
+    
+    @media (min-width: 1024px) {
+    .hero-content {
+        padding-top: 150px !important; /* This creates space for the logo on PC */
+    }
+}
+    
+    .animated-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    margin: 60px auto; 
+    width: 90%;
+    transform-origin: center; 
+    
+    /* This makes it grow/shrink as you scroll */
+    animation: spreadOut linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+}
+
+@keyframes spreadOut {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+}
+    
+    .scroll-reveal {
+    animation: revealEffect linear forwards;
+    animation-timeline: view();
+    /* We change 5%-30% to 0%-50% so the fade is much longer and visible */
+    animation-range: entry 0% cover 50%;
+}
+
+@keyframes revealEffect {
+    from {
+        opacity: 0;
+        /* I increased 40px to 100px so it slides from further down */
+        transform: translateY(100px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    
     </style>
 </head>
 <body>
@@ -583,7 +631,7 @@
         <div class="nav-logo"><img src="logo.png" style="height: 30px; width: auto;"></div>
         <div class="nav-links">
             <a href="#cad">ArchViz</a>
-<a href="#art">Artworks</a>
+            <a href="#art">Artworks</a>
             <a href="#archive">Archive</a>
             <a href="#contact">Contact</a>
         </div>
@@ -607,13 +655,13 @@
         <!-- Portfolio Section -->
         <section id="portfolio">
             <div id="cad"></div>
-            <div class="section-header">
+            <div class="section-header scroll-reveal" style="margin-top: 80px; margin-bottom: 50px; padding-left: 5%; text-align: left;">
                 <div class="section-number">01 — Selected Works</div>
                 <h2 class="section-title">Precision in form.<br>Purpose in space.</h2>
             </div>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Ivy.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">The Ivy Vault</h3>
@@ -623,17 +671,15 @@
                 
                 <div id="cad"></div>
                 
-                <div class="portfolio-item">
-    <div class="portfolio-image">
-        <img src="Strata House 1.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="portfolio-overlay">
-        <h3 class="portfolio-title">Strata House</h3>
-        <div class="portfolio-meta">UYO | 2025</div>
-    </div>
-</div>
+                <div class="portfolio-item scroll-reveal">
+                    <div class="portfolio-image"><img src="Strata House 1.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Strata House</h3>
+                        <div class="portfolio-meta">UYO | 2025</div>
+                    </div>
+                </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Cuisine Élégante 1.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Cuisine Élégante</h3>
@@ -641,7 +687,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Terra Curata 1.1.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Terra Curata</h3>
@@ -649,7 +695,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="The Petal Suite 4.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">The Petal Suite</h3>
@@ -657,7 +703,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Lunar Loft .jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Lunar Loft </h3>
@@ -665,9 +711,15 @@
                     </div>
                 </div>
                 
+                <div class="animated-divider"></div>
                 <div id="art"></div>
                 
-                <div class="portfolio-item">
+                <div class="section-header scroll-reveal" style="margin-top: 80px; margin-bottom: 50px; padding-left: 5%; text-align: left;">
+                <div class="section-number">02 — Fine Art</div>
+                <h2 class="section-title">Essence in stroke.<br>Soul in detail.</h2>
+            </div>
+                
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Essence.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Essence</h3>
@@ -675,7 +727,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Radiance.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Radiance</h3>
@@ -683,7 +735,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="Shades of Joy.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">Shades of Joy</h3>
@@ -691,7 +743,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item scroll-reveal">
                     <div class="portfolio-image"><img src="The Matriarch.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
                     <div class="portfolio-overlay">
                         <h3 class="portfolio-title">The Matriarch</h3>
