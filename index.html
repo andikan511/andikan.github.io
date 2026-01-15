@@ -624,9 +624,52 @@
     }
 }
     
+    .blackout-trap {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.4); /* A dark tint so the gold text pops */
+    backdrop-filter: blur(15px);   /* The frosting effect */
+    -webkit-backdrop-filter: blur(15px); /* Makes it work on iPhones */
+    z-index: 100000;
+    pointer-events: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #c9a961;
+    font-family: var(--serif);
+            font-size: 1.4rem;    /* Much more subtle and professional */
+    font-weight: 400;      /* Standard thinness, not bold at all */
+    letter-spacing: 2px;   /* Extra space between letters for a 'luxury' look */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    text-align: center;
+}
+
+/* THE SMART TRIGGER: Only shows when the script says so */
+body.context-open .blackout-trap {
+    display: flex !important;
+}
+
+/* Ghost Image Rule: Stops the 'Save Image' popup */
+img {
+    -webkit-touch-callout: none !important;
+    pointer-events: none;
+}
+
+/* Keep your button working */
+.message-btn, .message-btn * {
+    pointer-events: auto !important;
+}
+    
     </style>
 </head>
 <body>
+    <div class="blackout-trap">
+    <h2 style="text-decoration: underline 1px #c9a961; display: inline-block; margin-bottom: 10px;">CURATED ACCESS</h2>
+    <p>This portfolio presents selected works.
+Full project documentation is shared privately with clients.</p>
+</div>
     <nav id="navbar">
         <div class="nav-logo"><img src="logo.png" style="height: 30px; width: auto;"></div>
         <div class="nav-links">
@@ -656,7 +699,7 @@
         <section id="portfolio">
             <div id="cad"></div>
             <div class="section-header scroll-reveal" style="margin-top: 80px; margin-bottom: 50px; padding-left: 5%; text-align: left;">
-                <div class="section-number">01 — Selected Works</div>
+                <div class="section-number">01 — Architectural Visualization</div>
                 <h2 class="section-title">Precision in form.<br>Purpose in space.</h2>
             </div>
             
@@ -715,7 +758,7 @@
                 <div id="art"></div>
                 
                 <div class="section-header scroll-reveal" style="margin-top: 80px; margin-bottom: 50px; padding-left: 5%; text-align: left;">
-                <div class="section-number">02 — Fine Art</div>
+                <div class="section-number">02 — Artworks </div>
                 <h2 class="section-title">Essence in stroke.<br>Soul in detail.</h2>
             </div>
                 
@@ -912,6 +955,17 @@ fastScrollBtn.addEventListener('click', (e) => {
                 const image = item.querySelector('.portfolio-image');
                 image.style.transform = 'scale(1)';
             });
+            // This tells the body to turn black ONLY when a long-press/right-click is detected
+window.oncontextmenu = function(e) {
+    document.body.classList.add('context-open'); 
+    
+    // This automatically clears the black screen after 3 seconds
+    setTimeout(() => {
+        document.body.classList.remove('context-open');
+    }, 3000);
+    
+    return false; // This is the 'Bodyguard' that blocks the download menu
+};
         });
     </script>
 </body>
